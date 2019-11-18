@@ -3,6 +3,7 @@
     <div class="ms-login">
       <div class="ms-title">后台管理系统</div>
       <div class="ms-title">帅的呀</div>
+      <div class="ms-title">真的是越来越漂亮了</div>
     </div>
   </div>
 </template>
