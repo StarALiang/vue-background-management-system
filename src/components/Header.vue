@@ -9,12 +9,31 @@
     <div class="header-right">
       <div class="header-user-con">
         <!-- 全屏显示 -->
-        <div class="btn-fullsreen">
-          <i class="el-icon-rank"></i>
+        <div class="btn-fullscreen">
+          <el-tooltip effect="dark" :content="fullscreen?`取消全屏`:`全屏`" placement="bottom">
+            <i class="el-icon-rank"></i>
+          </el-tooltip>
+        </div>
+        <!-- 消息中心 -->
+        <div class="btn-bell">
+          <el-tooltip effect="dark" :content="message?`有${message}条未读消息`:`消息中心`" placement="bottom">
+            <i class="el-icon-bell"></i>
+          </el-tooltip>
+          <span class="btn-bell-badge" v-if="message"></span>
         </div>
         <div class="user-avator">
           <img src="../assets/img/img.jpg" />
         </div>
+        <el-dropdown class="user-name" trigger="click">
+          <span class="el-dropdown-link">
+            {{username}}
+            <i class="el-icon-caret-bottom"></i>
+          </span>
+          <el-dropdown-menu slot="dropdown">
+            <el-dropdown-item>项目仓库</el-dropdown-item>
+            <el-dropdown-item divided command="loginout">退出登录</el-dropdown-item>
+          </el-dropdown-menu>
+        </el-dropdown>
       </div>
     </div>
   </div>
@@ -26,7 +45,10 @@ export default {
   props: {},
   data() {
     return {
-      collapse: false
+      collapse: false,
+      fullscreen: false,
+      message: 2,
+      username: 'admin'
     };
   },
   watch: {},
@@ -68,14 +90,44 @@ export default {
       display: flex;
       height: 70px;
       align-items: center;
+      .btn-fullscreen {
+        transform: rotate(45deg);
+        cursor: pointer;
+      }
+      .btn-bell {
+        position: relative;
+        width: 30px;
+        height: 30px;
+        cursor: pointer;
+        line-height: 30px;
+        text-align: center;
+        margin-left: 6px;
+        .btn-bell-badge {
+          position: absolute;
+          right: 0;
+          top: -2;
+          width: 8px;
+          height: 8px;
+          border-radius: 4px;
+          background-color: #f56c6c;
+        }
+      }
       .user-avator {
         width: 40px;
         height: 40px;
         border-radius: 50%;
+        margin-left: 20px;
         overflow: hidden;
         img {
           width: 100%;
           height: 100%;
+        }
+      }
+      .user-name {
+        margin-left: 10px;
+        .el-dropdown-link {
+          color: #fff;
+          cursor: pointer;
         }
       }
     }
