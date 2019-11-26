@@ -44,9 +44,7 @@ export default {
   computed: {},
   methods: {
     submitForm() {
-      console.log("啦啦啦啦啦1111拉拉");
       this.$refs.login.validate(valid => {
-        console.log(valid);
         if (valid) {
           this.$message.success("登录成功");
           localStorage.setItem('ms_username', this.param.username);

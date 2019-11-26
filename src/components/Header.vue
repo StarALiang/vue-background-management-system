@@ -9,7 +9,7 @@
     <div class="header-right">
       <div class="header-user-con">
         <!-- 全屏显示 -->
-        <div class="btn-fullscreen">
+        <div class="btn-fullscreen" @click="handleFullScreen">
           <el-tooltip effect="dark" :content="fullscreen?`取消全屏`:`全屏`" placement="bottom">
             <i class="el-icon-rank"></i>
           </el-tooltip>
@@ -24,7 +24,7 @@
         <div class="user-avator">
           <img src="../assets/img/img.jpg" />
         </div>
-        <el-dropdown class="user-name" trigger="click">
+        <el-dropdown class="user-name" trigger="click" @command="handleCommand">
           <span class="el-dropdown-link">
             {{username}}
             <i class="el-icon-caret-bottom"></i>
@@ -48,15 +48,56 @@ export default {
       collapse: false,
       fullscreen: false,
       message: 2,
-      username: 'admin'
+      name: "admin"
     };
   },
   watch: {},
-  computed: {},
+  computed: {
+    username() {
+      let username = localStorage.getItem("ms_username");
+      return username ? username : this.name;
+    }
+  },
   methods: {
+    // 全屏显示
+    handleFullScreen() {
+      console.log("全屏显示");
+      let element = document.documentElement;
+      console.log(element);
+      if (this.fullscreen) {
+        if (document.exitFullscreen) {
+          document.exitFullscreen();
+        } else if (document.webkitCancelFullScreen) {
+          document.webkitCancelFullScreen();
+        } else if (document.mozCancelFullScreen) {
+          document.mozCancelFullScreen();
+        } else if (document.msExitFullscreen) {
+          document.msExitFullscreen();
+        }
+      } else {
+        if (element.requestFullscreen) {
+          element.requestFullscreen();
+        } else if (element.webkitRequestFullScreen) {
+          element.webkitRequestFullScreen();
+        } else if (element.mozRequestFullScreen) {
+          element.mozRequestFullScreen();
+        } else if (element.msRequestFullscreen) {
+          // IE11
+          element.msRequestFullscreen();
+        }
+      }
+      this.fullscreen = !this.fullscreen;
+    },
     // 侧边栏折叠
     collapseChange() {
       this.collapse = !this.collapse;
+    },
+    // 用户名下拉菜单选择事件
+    handleCommand(command) {
+      if (command == "loginout") {
+        localStorage.removeItem("ms_username");
+        this.$router.push("/login");
+      }
     }
   },
   created() {},
