@@ -1,0 +1,30 @@
+{
+  "id": "1532925",
+  "name": "vue-pc",
+  "font_family": "lx",
+  "css_prefix_text": "el-icon-",
+  "description": "自定义element图标",
+  "glyphs": [
+    {
+      "icon_id": "1309041",
+      "name": "979菜单_知识地图",
+      "font_class": "979caidan_zhishiditu",
+      "unicode": "e690",
+      "unicode_decimal": 59024
+    },
+    {
+      "icon_id": "1435243",
+      "name": "首页",
+      "font_class": "shouye",
+      "unicode": "e634",
+      "unicode_decimal": 58932
+    },
+    {
+      "icon_id": "7155227",
+      "name": "菜单",
+      "font_class": "caidan",
+      "unicode": "e652",
+      "unicode_decimal": 58962
+    }
+  ]
+}

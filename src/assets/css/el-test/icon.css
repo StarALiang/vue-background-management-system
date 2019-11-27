@@ -1,0 +1,18 @@
+@font-face {
+  font-family: 'lx';
+  src: url('iconfont.eot');
+  src: url('iconfont.eot?#iefix') format('embedded-opentype'),
+    url('iconfont.woff2') format('woff2'),
+    url('iconfont.woff') format('woff'),
+    url('iconfont.ttf') format('truetype'),
+    url('iconfont.svg#lx') format('svg');
+}
+
+.lx {
+  font-family: "lx" !important;
+  font-size: 16px;
+  color: #0ff;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

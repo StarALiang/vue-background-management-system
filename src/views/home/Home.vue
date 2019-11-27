@@ -2,8 +2,10 @@
   <div class="wrapper">
     <v-head></v-head>
     <v-sidebar></v-sidebar>
-    <div class="content-box" :class="{'centent-collapse':collapse}" ref="hello" @click="doClick">主页</div>
-    <v-tags></v-tags>
+    <div class="content-box">
+      <v-tags></v-tags>
+      <div>内容</div>
+    </div>
   </div>
 </template>
 
@@ -26,21 +28,8 @@ export default {
   },
   watch: {},
   computed: {},
-  methods: {
-    doClick(e) {
-      console.log("啦啦啦");
-      bus.$emit("collapse-content", event.target);
-    }
-  },
-  created() {
-    console.log("msg");
-    console.log(bus);
-    console.log(this);
-    bus.$on("collapse-content", msg => {
-      console.log(msg);
-      this.collapse = msg;
-    });
-  },
+  methods: {},
+  created() {},
   mounted() {}
 };
 </script>
