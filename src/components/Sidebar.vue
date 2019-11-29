@@ -1,7 +1,5 @@
 <template>
   <div class="sidebar">
-    <!-- <i class="lx">&#xe634;</i> -->
-    <i class="lx el-icon-caidan"></i>
     <el-menu
       class="sidebar-el-menu"
       background-color="#324157"
@@ -50,22 +48,22 @@ export default {
       collapse: false,
       items: [
         {
-          icon: "el-icon-lx-home",
+          icon: "lx el-icon-shouye",
           index: "dashboard",
           title: "系统首页"
         },
         {
-          icon: "el-icon-lx-cascades",
+          icon: "lx el-icon-caidan",
           index: "table",
           title: "基础表格"
         },
         {
-          icon: "el-icon-lx-copy",
+          icon: "lx el-icon-tabordersinactive",
           index: "tabs",
           title: "tab选项卡"
         },
         {
-          icon: "el-icon-lx-calendar",
+          icon: "lx el-icon-jsform",
           index: "3",
           title: "表单相关",
           subs: [
@@ -94,7 +92,7 @@ export default {
           ]
         },
         {
-          icon: "el-icon-lx-emoji",
+          icon: "lx el-icon-biaoqing",
           index: "icon",
           title: "自定义图标"
         },
@@ -119,12 +117,12 @@ export default {
           ]
         },
         {
-          icon: "el-icon-lx-global",
+          icon: "lx el-icon-979caidan_zhishiditu",
           index: "i18n",
           title: "国际化功能"
         },
         {
-          icon: "el-icon-lx-warn",
+          icon: "lx el-icon-jinggao",
           index: "7",
           title: "错误处理",
           subs: [
@@ -165,5 +163,13 @@ export default {
     width: 250px;
     height: 100%;
   }
+}
+
+.lx {
+  margin-right: 5px;
+  width: 24px;
+  text-align: center;
+  font-size: 18px;
+  vertical-align: middle;
 }
 </style>

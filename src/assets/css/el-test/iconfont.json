@@ -6,6 +6,13 @@
   "description": "自定义element图标",
   "glyphs": [
     {
+      "icon_id": "236865",
+      "name": "Tab  Orders Inactive",
+      "font_class": "tabordersinactive",
+      "unicode": "e65f",
+      "unicode_decimal": 58975
+    },
+    {
       "icon_id": "1309041",
       "name": "979菜单_知识地图",
       "font_class": "979caidan_zhishiditu",
@@ -20,11 +27,39 @@
       "unicode_decimal": 58932
     },
     {
+      "icon_id": "3520955",
+      "name": "表单",
+      "font_class": "jsform",
+      "unicode": "e6e9",
+      "unicode_decimal": 59113
+    },
+    {
+      "icon_id": "3643507",
+      "name": "红包",
+      "font_class": "hongbao",
+      "unicode": "e605",
+      "unicode_decimal": 58885
+    },
+    {
+      "icon_id": "3828755",
+      "name": "警告",
+      "font_class": "jinggao",
+      "unicode": "e65c",
+      "unicode_decimal": 58972
+    },
+    {
       "icon_id": "7155227",
       "name": "菜单",
       "font_class": "caidan",
       "unicode": "e652",
       "unicode_decimal": 58962
+    },
+    {
+      "icon_id": "9227151",
+      "name": "表情",
+      "font_class": "biaoqing",
+      "unicode": "e69d",
+      "unicode_decimal": 59037
     }
   ]
 }

@@ -5,7 +5,6 @@ import App from './App.vue';
 import router from './router';
 import store from './store';
 import './assets/css/icon.css'; // 加入自定义图标
-import './assets/css/el-test/icon.css'; // 加入自定义图标
 import './assets/css/el-test/iconfont.css'; // 加入自定义图标
 
 Vue.config.productionTip = false
