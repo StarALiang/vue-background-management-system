@@ -1,7 +1,12 @@
 <template>
   <div class="sidebar">
+    <!-- <el-radio-group v-model="collapse" style="margin-bottom: 20px;">
+      <el-radio-button :label="false">展开</el-radio-button>
+      <el-radio-button :label="true">收起</el-radio-button>
+    </el-radio-group> -->
     <el-menu
       class="sidebar-el-menu"
+      :collapse="collapse"
       background-color="#324157"
       text-color="#bfcbd9"
       active-text-color="#20a0ff"
@@ -147,7 +152,7 @@ export default {
     bus.$on("collapse", msg => {
       console.log(msg);
       this.collapse = msg;
-      bus.$emit("collapse-content", msg);
+      bus.$emit('collapse-content', msg);
     });
   },
   mounted() {}
@@ -159,9 +164,11 @@ export default {
   left: 0;
   top: 70px;
   bottom: 0;
-  .sidebar-el-menu {
+  .sidebar-el-menu:not(.el-menu--collapse) {
     width: 250px;
-    height: 100%;
+  }
+  .sidebar-el-menu {
+height: 100%;
   }
 }
 

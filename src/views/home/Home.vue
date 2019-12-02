@@ -2,7 +2,7 @@
   <div class="wrapper">
     <v-head></v-head>
     <v-sidebar></v-sidebar>
-    <div class="content-box">
+    <div class="content-box" :class="{'content-collapse':collapse}">
       <v-tags></v-tags>
       <div>内容</div>
     </div>
@@ -29,7 +29,11 @@ export default {
   watch: {},
   computed: {},
   methods: {},
-  created() {},
+  created() {
+    bus.$on("collapse-content", msg => {
+      this.collapse = msg;
+    });
+  },
   mounted() {}
 };
 </script>

@@ -40,6 +40,7 @@
 </template>
 
 <script>
+import bus from "./bus";
 export default {
   components: {},
   props: {},
@@ -91,6 +92,9 @@ export default {
     // 侧边栏折叠
     collapseChange() {
       this.collapse = !this.collapse;
+      console.log(this.collapse);
+      console.log(bus);
+      bus.$emit("collapse", this.collapse);
     },
     // 用户名下拉菜单选择事件
     handleCommand(command) {
