@@ -4,7 +4,11 @@
     <v-sidebar></v-sidebar>
     <div class="content-box" :class="{'content-collapse':collapse}">
       <v-tags></v-tags>
-      <div>内容</div>
+      <div class="content">
+        <transition name="move" mode="out-in">
+          <router-view></router-view>
+        </transition>
+      </div>
     </div>
   </div>
 </template>
@@ -37,8 +41,3 @@ export default {
   mounted() {}
 };
 </script>
-
-<style lang="scss" scoped>
-.wrapper {
-}
-</style>

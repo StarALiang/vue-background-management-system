@@ -1,9 +1,5 @@
 <template>
   <div class="sidebar">
-    <!-- <el-radio-group v-model="collapse" style="margin-bottom: 20px;">
-      <el-radio-button :label="false">展开</el-radio-button>
-      <el-radio-button :label="true">收起</el-radio-button>
-    </el-radio-group> -->
     <el-menu
       class="sidebar-el-menu"
       :collapse="collapse"
@@ -11,6 +7,8 @@
       text-color="#bfcbd9"
       active-text-color="#20a0ff"
       unique-opened
+      :default-active="onRoutes"
+      router
     >
       <template v-for="item in items">
         <template v-if="item.subs">
@@ -145,14 +143,19 @@ export default {
     };
   },
   watch: {},
-  computed: {},
+  computed: {
+    onRoutes() {
+      console.log('$route' + this.$route.path);
+      return this.$route.path.replace("/", "");
+    }
+  },
   methods: {},
   created() {
     // 通过 Event Bus 进行组件间通信，来折叠侧边栏
     bus.$on("collapse", msg => {
       console.log(msg);
       this.collapse = msg;
-      bus.$emit('collapse-content', msg);
+      bus.$emit("collapse-content", msg);
     });
   },
   mounted() {}
@@ -168,7 +171,7 @@ export default {
     width: 250px;
   }
   .sidebar-el-menu {
-height: 100%;
+    height: 100%;
   }
 }
 
