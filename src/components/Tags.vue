@@ -1,22 +1,25 @@
 <template>
-  <div class="wrapper">
+  <div class="wrapper" v-if="showTags">
     <ul>
-      <li class="tags-li active" v-for="(item, index) in tagsList" :key="index">
-        <router-link to="/dashboard" class="tags-li-title active">{{item.title}}</router-link>
-        <span>
-          <i class="el-icon-close"></i>
-        </span>
+      <li
+        class="tags-li"
+        :class="{'active': isActive(item.path)}"
+        v-for="(item, index) in tagsList"
+        :key="index"
+      >
+        <router-link :to="item.path" class="tags-li-title">{{item.title}}</router-link>
+        <span @click="closeTags(index)"><i class="el-icon-close"></i></span>
       </li>
     </ul>
     <div class="tags-close-box">
-      <el-dropdown>
+      <el-dropdown @command="handleTags">
         <el-button size="mini" type="primary">
           标签选项
           <i class="el-icon-arrow-down el-icon--right"></i>
         </el-button>
         <el-dropdown-menu size="small" slot="dropdown">
           <el-dropdown-item command="other">关闭其他</el-dropdown-item>
-          <el-dropdown-item command="all">关闭所有</el-dropdown-item>
+          <el-dropdown-item command="all" divided>关闭所有</el-dropdown-item>
         </el-dropdown-menu>
       </el-dropdown>
     </div>
@@ -34,17 +37,20 @@ export default {
   },
   watch: {
     $route(newValue, oldValue) {
-      console.log("$route监听");
-      console.log(newValue);
-      console.log(oldValue);
       this.setTags(newValue);
     }
   },
-  computed: {},
+  computed: {
+    showTags() {
+      if (this.tagsList.length == 1 && this.$route.fullPath == '/dashboard') {
+        return false;
+      }
+      return this.tagsList.length > 0;
+    }
+  },
   methods: {
     // 设置标签
     setTags(route) {
-      console.log(route);
       // 判断的当前页面已经在标签列表中
       let isExist = this.tagsList.some(item => {
         return item.path === route.fullPath;
@@ -58,14 +64,42 @@ export default {
           path: route.fullPath,
           name: route.matched[0].name
         });
-        console.log(this.tagsList);
+      }
+    },
+    // 是否选择当前标签栏
+    isActive(path) {
+      return path === this.$route.fullPath;
+    },
+    // 关闭标签
+    handleTags(command) {
+      command === 'other' ? this.closeOther() : this.closeAll();
+    },
+    // 关闭其他标签
+    closeOther() {
+      let curItem = this.tagsList.filter(item => {
+        return item.path === this.$route.fullPath;
+      });
+      this.tagsList = curItem;
+    },
+    // 关闭全部标签
+    closeAll() {
+      this.tagsList = [];
+      this.$router.push('/home');
+    },
+    // 关闭单个标签
+    closeTags(index) {
+      // 删除当前标签
+      let delItem = this.tagsList.splice(index, 1)[0];
+      // 获取当前标签页或者是上个标签页
+      let item = this.tagsList[index] ? this.tagsList[index] : this.tagsList[index-1];
+      if (item) {
+        delItem.path === this.$route.fullPath && this.$router.push(item.path);
+      } else {
+        this.$router.push('/home');
       }
     }
   },
   created() {
-    console.log("路由router");
-    console.log(this.$route);
-    console.log(this.$router);
     this.setTags(this.$route);
   },
   mounted() {}
@@ -108,15 +142,15 @@ export default {
         margin-right: 5px;
         color: #666;
       }
-      .tags-li-title.active {
-        color: #fff;
-      }
     }
     .tags-li:not(.active):hover {
       background-color: #f8f8f8;
     }
     .tags-li.active {
       color: #fff;
+      .tags-li-title {
+        color: #fff;
+      }
     }
   }
   .tags-close-box {
@@ -129,7 +163,7 @@ export default {
     box-sizing: border-box;
     padding-top: 1px;
     text-align: center;
-    box-shadow: -3px 0 15px 3px rgba(0, 0, 0, .1);
+    box-shadow: -3px 0 15px 3px rgba(0, 0, 0, 0.1);
     z-index: 10;
   }
 }

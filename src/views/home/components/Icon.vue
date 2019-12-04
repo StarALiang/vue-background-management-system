@@ -1,5 +1,5 @@
 <template>
-  <div class="wrapper">
+  <div>
     Icon.vue自定义图标组件
   </div>
 </template>
@@ -20,5 +20,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.wrapper {}
+
 </style>

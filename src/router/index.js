@@ -9,6 +9,10 @@ const routes = [
     redirect: '/login'
   },
   {
+    path: '/home',
+    redirect: '/dashboard'
+  },
+  {
     path: '/login',
     name: 'login',
     component: () => import('../views/login/login.vue'),
@@ -16,22 +20,24 @@ const routes = [
   },
   {
     path: '/home',
-    // name: 'home',
     component: () => import('../views/home/Home.vue'),
     meta: { title: '自述文件' },
     children: [
       {
         path: '/dashboard',
+        name: 'dashboard',
         component: () => import('../views/home/components/Dashboard.vue'),
         meta: { title: '系统首页' }
       },
       {
         path: '/table',
+        name: 'table',
         component: () => import('../views/home/components/BaseTable.vue'),
         meta: { title: '基础表格' }
       },
       {
-        path: '/Tabs',
+        path: '/tabs',
+        name: 'tabs',
         component: () => import('../views/home/components/Tabs.vue'),
         meta: { title: 'tab选项卡' }
       },

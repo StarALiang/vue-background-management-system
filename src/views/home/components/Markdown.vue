@@ -1,5 +1,5 @@
 <template>
-  <div class="wrapper">
+  <div>
     Markdown.vue
   </div>
 </template>
@@ -20,5 +20,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.wrapper {}
+
 </style>
