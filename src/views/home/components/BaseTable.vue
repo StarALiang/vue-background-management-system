@@ -1,6 +1,15 @@
 <template>
-  <div class="wrapper">
-    basetable.vue
+  <div>
+    <div class="crumbs">
+      <el-breadcrumb separator="/">
+        <el-breadcrumb-item>
+          <i class="lx el-icon-caidan" style="font-size: 14px;"></i><span> 基础表格</span>
+        </el-breadcrumb-item>
+      </el-breadcrumb>
+    </div>
+    <div class="container">
+
+    </div>
   </div>
 </template>
 
@@ -20,5 +29,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.wrapper {}
+.container{
+  height: 400px;
+}
 </style>

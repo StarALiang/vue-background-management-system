@@ -61,12 +61,12 @@ export default {
           title: "基础表格"
         },
         {
-          icon: "lx el-icon-tabordersinactive",
+          icon: "lx el-icon-tab",
           index: "tabs",
           title: "tab选项卡"
         },
         {
-          icon: "lx el-icon-jsform",
+          icon: "lx el-icon-biaodan",
           index: "3",
           title: "表单相关",
           subs: [
@@ -120,7 +120,7 @@ export default {
           ]
         },
         {
-          icon: "lx el-icon-979caidan_zhishiditu",
+          icon: "lx el-icon-ditu",
           index: "i18n",
           title: "国际化功能"
         },

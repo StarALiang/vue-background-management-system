@@ -6,16 +6,9 @@
   "description": "自定义element图标",
   "glyphs": [
     {
-      "icon_id": "236865",
-      "name": "Tab  Orders Inactive",
-      "font_class": "tabordersinactive",
-      "unicode": "e65f",
-      "unicode_decimal": 58975
-    },
-    {
       "icon_id": "1309041",
       "name": "979菜单_知识地图",
-      "font_class": "979caidan_zhishiditu",
+      "font_class": "ditu",
       "unicode": "e690",
       "unicode_decimal": 59024
     },
@@ -27,11 +20,18 @@
       "unicode_decimal": 58932
     },
     {
-      "icon_id": "3520955",
-      "name": "表单",
-      "font_class": "jsform",
-      "unicode": "e6e9",
-      "unicode_decimal": 59113
+      "icon_id": "1983155",
+      "name": "数量",
+      "font_class": "suobanxin",
+      "unicode": "e639",
+      "unicode_decimal": 58937
+    },
+    {
+      "icon_id": "2380554",
+      "name": "表情",
+      "font_class": "biaoqing",
+      "unicode": "e630",
+      "unicode_decimal": 58928
     },
     {
       "icon_id": "3643507",
@@ -41,25 +41,46 @@
       "unicode_decimal": 58885
     },
     {
-      "icon_id": "3828755",
+      "icon_id": "3731143",
+      "name": "盒子",
+      "font_class": "caidan",
+      "unicode": "e600",
+      "unicode_decimal": 58880
+    },
+    {
+      "icon_id": "3958328",
+      "name": "提醒",
+      "font_class": "tixing",
+      "unicode": "e79a",
+      "unicode_decimal": 59290
+    },
+    {
+      "icon_id": "4592154",
+      "name": "表单",
+      "font_class": "biaodan",
+      "unicode": "e6af",
+      "unicode_decimal": 59055
+    },
+    {
+      "icon_id": "5321968",
+      "name": "用户名",
+      "font_class": "yonghuming",
+      "unicode": "e63e",
+      "unicode_decimal": 58942
+    },
+    {
+      "icon_id": "6329281",
       "name": "警告",
       "font_class": "jinggao",
-      "unicode": "e65c",
-      "unicode_decimal": 58972
+      "unicode": "e68a",
+      "unicode_decimal": 59018
     },
     {
-      "icon_id": "7155227",
-      "name": "菜单",
-      "font_class": "caidan",
-      "unicode": "e652",
-      "unicode_decimal": 58962
-    },
-    {
-      "icon_id": "9227151",
-      "name": "表情",
-      "font_class": "biaoqing",
-      "unicode": "e69d",
-      "unicode_decimal": 59037
+      "icon_id": "10073322",
+      "name": "文件",
+      "font_class": "tab",
+      "unicode": "e619",
+      "unicode_decimal": 58905
     }
   ]
 }

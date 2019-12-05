@@ -6,9 +6,11 @@ import router from './router';
 import store from './store';
 import './assets/css/icon.css'; // 加入自定义图标
 import './assets/css/el-test/iconfont.css'; // 加入自定义图标
+import VCharts from 'v-charts'
 
 Vue.config.productionTip = false
 Vue.use(ElementUI, { size: 'small', zIndex: 3000 });
+Vue.use(VCharts)
 
 new Vue({
   router,
