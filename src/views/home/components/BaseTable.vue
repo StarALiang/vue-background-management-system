@@ -24,7 +24,8 @@
       </div>
       <el-table
         ref="multipleTable"
-        :data="tableData"
+        border
+        :data="tablePage"
         tooltip-effect="dark"
         class="table"
         @selection-change="handleSelectionChange"
@@ -60,15 +61,27 @@
               type="text"
               icon="el-icon-delete"
               style="color: #f00;"
-              @click="handleDetele(scope.$index, scope.row)"
+              @click="handleDelete(scope.$index, scope.row)"
             >删除</el-button>
           </template>
         </el-table-column>
       </el-table>
+      <!-- 分页栏 -->
+      <div class="pagination">
+        <el-pagination
+          background
+          @size-change="handleSizeChange"
+          @current-change="handleCurrentChange"
+          :current-page.sync="pageIndex"
+          :page-size="pageSize"
+          layout="total, prev, pager, next"
+          :total="pageTotal"
+        ></el-pagination>
+      </div>
     </div>
     <!-- 编辑弹出框 -->
     <el-dialog title="提示" :visible.sync="editVisible" width="30%" center>
-      <el-form label-position="right" label-width="80px" :model="form">
+      <el-form label-position="right" label-width="80px">
         <el-form-item label="用户名">
           <el-input v-model="form.name"></el-input>
         </el-form-item>
@@ -85,6 +98,8 @@
 </template>
 
 <script>
+import deepClone from "../../../utils/DeepClone";
+import { TestList } from "../../../api/index";
 export default {
   components: {},
   props: {},
@@ -116,13 +131,8 @@ export default {
           label: "广州"
         }
       ],
-      query: {
-        address: "",
-        name: "",
-        pageIndex: 1,
-        pageSize: 10
-      },
       tableData: [
+        //总数据
         {
           id: 1,
           name: "王小虎",
@@ -135,53 +145,142 @@ export default {
         {
           id: 2,
           date: "2016-05-02",
-          name: "王小虎",
+          name: "没点逼数",
           address: "上海市普陀区金沙江路 1518 弄",
           state: "失败"
         },
         {
           id: 3,
           date: "2016-05-04",
-          name: "王小虎",
+          name: "我太难了",
           address: "上海市普陀区金沙江路 1518 弄"
         },
         {
           id: 4,
           date: "2016-05-01",
-          name: "王小虎",
+          name: "见鬼了",
           address: "上海市普陀区金沙江路 1518 弄"
         },
         {
           id: 5,
           date: "2016-05-08",
-          name: "王小虎",
+          name: "阿里路亚",
           address: "上海市普陀区金沙江路 1518 弄"
         },
         {
           id: 6,
           date: "2016-05-06",
+          name: "霸天虎",
+          address: "上海市普陀区金沙江路 1518 弄"
+        },
+        {
+          id: 7,
+          name: "大傻逼",
+          money: 392,
+          thumb: "https://lin-xin.gitee.io/images/post/wms.png",
+          date: "2016-05-03",
+          address: "上海市普陀区金沙江路 1518 弄",
+          state: "成功"
+        },
+        {
+          id: 8,
+          date: "2016-05-02",
+          name: "我也是服了",
+          address: "上海市普陀区金沙江路 1518 弄",
+          state: "失败"
+        },
+        {
+          id: 9,
+          date: "2016-05-04",
+          name: "有病吧",
+          address: "上海市普陀区金沙江路 1518 弄"
+        },
+        {
+          id: 10,
+          date: "2016-05-01",
+          name: "见识了",
+          address: "上海市普陀区金沙江路 1518 弄"
+        },
+        {
+          id: 11,
+          date: "2016-05-08",
+          name: "你谁呀",
+          address: "上海市普陀区金沙江路 1518 弄"
+        },
+        {
+          id: 12,
+          date: "2016-05-06",
           name: "王小虎",
+          address: "上海市普陀区金沙江路 1518 弄"
+        },
+        {
+          id: 13,
+          name: "大傻逼",
+          money: 392,
+          thumb: "https://lin-xin.gitee.io/images/post/wms.png",
+          date: "2016-05-03",
+          address: "上海市普陀区金沙江路 1518 弄",
+          state: "成功"
+        },
+        {
+          id: 14,
+          date: "2016-05-02",
+          name: "我也是服了",
+          address: "上海市普陀区金沙江路 1518 弄",
+          state: "失败"
+        },
+        {
+          id: 15,
+          date: "2016-05-04",
+          name: "有病吧",
+          address: "上海市普陀区金沙江路 1518 弄"
+        },
+        {
+          id: 16,
+          date: "2016-05-01",
+          name: "见识了",
+          address: "上海市普陀区金沙江路 1518 弄"
+        },
+        {
+          id: 17,
+          date: "2016-05-08",
+          name: "你谁呀",
           address: "上海市普陀区金沙江路 1518 弄"
         }
       ],
+      tablePage: [], //当前页显示的数据
       idx: -1, //列表项ID
       form: {}, //列表项数据
-      editVisible: false //是否显示对话框
+      editVisible: false, //是否显示对话框
+      query: {
+        address: "",
+        name: ""
+      },
+      pageIndex: 1, //首次加载显示的列表页
+      pageSize: 5, //每页显示的列表数量
+      pageTotal: 0 //列表总数
     };
   },
   watch: {},
   computed: {},
   methods: {
+    handleSizeChange(val) {
+      console.log(`每页 ${val} 条`);
+    },
+    handleCurrentChange(val = 1) {
+      this.pageTotal = this.tableData.length;
+      this.pageIndex = val;
+      var dataList = deepClone(this.tableData);
+      let startNumber = (val - 1) * 5;
+      this.tablePage = dataList.splice(startNumber, 5);
+    },
     handleSelectionChange(val) {
       console.log(val);
     },
     // 编辑操作
     handleEdit(index, row) {
-      console.log("编辑操作");
-      console.log(index);
-      console.log(row);
       this.idx = index;
-      this.form = row;
+      this.form = deepClone(row); // 深克隆数据
       this.editVisible = true;
     },
     // 保存操作
@@ -189,11 +288,39 @@ export default {
       this.editVisible = false;
       this.$message.success(`修改第 ${this.idx + 1} 行成功`);
       this.$set(this.tableData, this.idx, this.form);
-      console.log(this);
+      this.handleCurrentChange(this.pageIndex);
+    },
+    // 删除数据
+    handleDelete(index, row) {
+      this.$confirm("确定要删除吗？", "提示", {
+        type: "warning"
+      }).then(() => {
+        this.$message.success("删除成功");
+        this.tableData.splice(index, 1);
+        this.handleCurrentChange(this.pageIndex);
+      });
     }
   },
   created() {},
-  mounted() {}
+  mounted() {
+    console.log("进入了基本表格子页面");
+    /* 
+    // 数据列表请求接口
+    TestList()
+      .then(res => {
+        console.log("请求成功");
+        console.log(res);
+      })
+      .catch(err => {
+        console.log("请求失败");
+        console.log(err);
+      });
+     */
+    // 获取列表项总数
+    this.pageTotal = this.tableData.length;
+    // 调用当前也许显示的列表数据
+    this.handleCurrentChange(1);
+  }
 };
 </script>
 
