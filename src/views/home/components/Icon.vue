@@ -1,6 +1,13 @@
 <template>
   <div>
-    Icon.vue自定义图标组件
+    <div class="crumbs">
+      <el-breadcrumb separator="/">
+        <el-breadcrumb-item>
+          <i class="el-icon-rank"></i> 自定义图标
+        </el-breadcrumb-item>
+      </el-breadcrumb>
+    </div>
+    <div class="container">内容</div>
   </div>
 </template>
 
@@ -20,5 +27,4 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
 </style>

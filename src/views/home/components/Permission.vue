@@ -1,6 +1,13 @@
 <template>
   <div class="wrapper">
-    Permission.vue权限页面
+    <div class="crumbs">
+      <el-breadcrumb separator="/">
+        <el-breadcrumb-item>
+          <i class="el-icon-rank"></i> 权限测试
+        </el-breadcrumb-item>
+      </el-breadcrumb>
+    </div>
+    <div class="container">内容</div>
   </div>
 </template>
 

@@ -1,6 +1,13 @@
 <template>
   <div class="wrapper">
-    I18n.vue国际化组件
+    <div class="crumbs">
+      <el-breadcrumb separator="/">
+        <el-breadcrumb-item>
+          <i class="el-icon-rank"></i> 国际化组件
+        </el-breadcrumb-item>
+      </el-breadcrumb>
+    </div>
+    <div class="container">内容</div>
   </div>
 </template>
 
@@ -20,5 +27,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.wrapper {}
+.wrapper {
+}
 </style>

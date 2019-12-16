@@ -1,6 +1,14 @@
 <template>
   <div class="wrapper">
-    Upload.vue
+    <div class="crumbs">
+      <el-breadcrumb separator="/">
+        <el-breadcrumb-item>
+          <i class="el-icon-rank"></i> 表单
+        </el-breadcrumb-item>
+        <el-breadcrumb-item>图片上传</el-breadcrumb-item>
+      </el-breadcrumb>
+    </div>
+    <div class="container">内容</div>
   </div>
 </template>
 

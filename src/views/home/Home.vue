@@ -34,6 +34,7 @@ export default {
   computed: {},
   methods: {},
   created() {
+    // 获取内容板块左边距样式
     bus.$on("collapse-content", msg => {
       this.collapse = msg;
     });
