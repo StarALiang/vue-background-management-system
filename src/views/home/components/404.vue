@@ -1,14 +1,13 @@
 <template>
-  <div class="wrapper">
-    <div class="crumbs">
-      <el-breadcrumb separator="/">
-        <el-breadcrumb-item>
-          <i class="lx el-icon-biaodan" style="font-size: 14px; margin-right: 4px;"></i>
-          <span>404</span>
-        </el-breadcrumb-item>
-      </el-breadcrumb>
+  <div class="error-page">
+    <div class="error-code">4<span>0</span>4</div>
+    <div class="error-desc">啊哦~ 你所访问的页面不存在</div>
+    <div class="error-handle">
+      <router-link to="/dashboard">
+        <el-button type="primary" size="large">返回首页</el-button>
+      </router-link>
+      <el-button class="error-btn" @click="goBack" type="primary" size="large">返回上一页</el-button>
     </div>
-    <div class="container">内容</div>
   </div>
 </template>
 
@@ -21,12 +20,46 @@ export default {
   },
   watch: {},
   computed: {},
-  methods: {},
+  methods: {
+    // 返回上一页
+    goBack() {
+      this.$router.go(-1);
+    }
+  },
   created() {},
   mounted() {}
 };
 </script>
 
 <style lang="scss" scoped>
-.wrapper {}
+.error-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  background-color: #f3f3f3;
+  box-sizing: border-box;
+  .error-code {
+    line-height: 1;
+    font-size: 250px;
+    font-weight: bold;
+    color: #2d8cf0;
+    span {
+      color: #00a854;
+    }
+  }
+  .error-desc {
+    font-size: 30px;
+    color: #777;
+  }
+  .error-handle {
+    margin-top: 30px;
+    padding-bottom: 200px;
+    .error-btn {
+      margin-left: 100px;
+    }
+  }
+}
 </style>
